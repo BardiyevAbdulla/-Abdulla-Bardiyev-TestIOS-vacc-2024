@@ -12,19 +12,8 @@ import CoreData
 
 
 
-
-
-
-fileprivate var ConstSize: Int = 0
-fileprivate var ConstPage: Int = 0
-
 class Pagination<T: BaseDataSource> {
      
-    private var current: Int
-    
-    private var max: Int? = nil
-    
-    private var size: Int = 0
     
     private var isBlock = false
     
@@ -40,15 +29,13 @@ class Pagination<T: BaseDataSource> {
    @Published public var items: [T]? = []
     let type: NSManagedObject.Type
    // private var keyword: String
-    init(current: Int = 0, max: Int? = nil, size: Int, router: RequestModel, type: NSManagedObject.Type) {
+    init(size: Int, router: RequestModel, type: NSManagedObject.Type) {
         self.type = type
-        self.current = current
-        self.max = max
-        self.size = size
+//        self.current = current
+//        self.max = max
+//        self.size = size
         self.router = router
-        //self.keyword = keyword
-        ConstSize = size
-        ConstPage = current
+        
         //fetchData()
         
         NotificationCenter.default.addObserver(forName: .dataUploaded, object: nil, queue: .main) {[weak self] _ in
@@ -62,16 +49,22 @@ class Pagination<T: BaseDataSource> {
     
     
     func restart(newPage: Int? = nil, newSize: Int? = nil, keyword: String? = nil) {
-        current = 0
-        self.router = router.modifyForPagination(newPage ?? self.current, pageSize: newSize ?? self.size, keyword: keyword)
+        
+        if let keyword, keyword.count > 0 {
+            self.router.keyword = keyword
+        } else {
+            self.router.keyword = nil
+        }
+        
+        self.router = router.modifyForPagination(newPage ?? newPage, pageSize: newSize , keyword: keyword)
         isBlock = false
         items = nil
         fetchData()
     }
     
     func finish() {
-       
-        current = 0
+        router.page = 0
+        
         isBlock = false
         items = nil
         paginationItems = nil
@@ -87,18 +80,18 @@ class Pagination<T: BaseDataSource> {
         
         if paginationItems.empty == true { return }
         
-        if let max, max <= (paginationItems.totalPages ?? 0) {
+        if router.page <= (paginationItems.totalPages ?? 0) {
             return
         }
         
-           router = router.modifyForPagination( current, pageSize: size)
         fetchData()
     }
     
     private func fetchData() {
       
         if let model = CoreDataManager.shared.fetchData(router, request: type) as PageableItems<T>? {
-            self.current += 1
+           
+            router.page += router.page
             self.paginationItems = model
             if let content = paginationItems?.content {
                 
@@ -131,7 +124,7 @@ struct RequestModel {
     var pageSize: Int
     var keyword: String?
     
-    func modifyForPagination(_ page: Int, pageSize: Int, keyword: String? = nil) -> Self {
-        return .init(page: page, pageSize: pageSize, keyword: keyword)
+    func modifyForPagination(_ page: Int? = nil, pageSize: Int? = nil, keyword: String? = nil) -> Self {
+        return .init(page: page ?? self.page, pageSize: pageSize ?? self.pageSize, keyword: keyword ?? self.keyword)
     }
 }

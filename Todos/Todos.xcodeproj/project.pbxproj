@@ -43,7 +43,7 @@
 		845D6A332D78EB8F000E8E28 /* TodoEntity+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D6A322D78EB8F000E8E28 /* TodoEntity+.swift */; };
 		845D6A352D78EBFB000E8E28 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D6A342D78EBFB000E8E28 /* Array+.swift */; };
 		84B1F8B72D79043A00289616 /* TodoEntity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84B1F8B52D79043A00289616 /* TodoEntity.xcdatamodeld */; };
-		84B1F8B92D7922D100289616 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1F8B82D7922D100289616 /* Models.swift */; };
+		84B1F8B92D7922D100289616 /* PaginationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1F8B82D7922D100289616 /* PaginationModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +84,7 @@
 		845D6A322D78EB8F000E8E28 /* TodoEntity+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+.swift"; sourceTree = "<group>"; };
 		845D6A342D78EBFB000E8E28 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		84B1F8B62D79043A00289616 /* TodoEntity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoEntity.xcdatamodel; sourceTree = "<group>"; };
-		84B1F8B82D7922D100289616 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		84B1F8B82D7922D100289616 /* PaginationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +172,7 @@
 				845D69F02D7591F5000E8E28 /* MainTabBarCoordinator.swift */,
 				845D69F22D759202000E8E28 /* MainViewModel.swift */,
 				845D69F42D759211000E8E28 /* MainTableViewController.swift */,
-				84B1F8B82D7922D100289616 /* Models.swift */,
+				84B1F8B82D7922D100289616 /* PaginationModels.swift */,
 			);
 			path = mainView;
 			sourceTree = "<group>";
@@ -348,7 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B1F8B92D7922D100289616 /* Models.swift in Sources */,
+				84B1F8B92D7922D100289616 /* PaginationModels.swift in Sources */,
 				845D69F92D7592C5000E8E28 /* Coordinator.swift in Sources */,
 				845D6A332D78EB8F000E8E28 /* TodoEntity+.swift in Sources */,
 				845D69F32D759202000E8E28 /* MainViewModel.swift in Sources */,
